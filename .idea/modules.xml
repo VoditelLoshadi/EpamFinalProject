@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EpamFinalProject.iml" filepath="$PROJECT_DIR$/.idea/EpamFinalProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selection-committee/selection-committee.iml" filepath="$PROJECT_DIR$/selection-committee/selection-committee.iml" />
     </modules>
   </component>
 </project>
