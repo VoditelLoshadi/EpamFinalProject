@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <display-name>Selection committee</display-name>
+
+
+    <servlet>
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <servlet-class>ua.epam.elearn.selection.committee.controller.FrontControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontControllerServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>localization</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ua.epam.elearn.selection.committee.controller.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>setCharsetFilter</filter-name>
+        <filter-class>ua.epam.elearn.selection.committee.controller.filter.CharsetFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>setCharsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LocalFilter</filter-name>
+        <filter-class>ua.epam.elearn.selection.committee.controller.filter.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocalFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/error/403.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/error/404.jsp</location>
+    </error-page>
+
+    <listener>
+        <listener-class>
+            ua.epam.elearn.selection.committee.controller.listener.ContextListener
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            ua.epam.elearn.selection.committee.controller.listener.BackgroundManager
+        </listener-class>
+    </listener>
+</web-app>

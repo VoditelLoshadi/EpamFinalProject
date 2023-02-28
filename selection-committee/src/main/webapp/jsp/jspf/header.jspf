@@ -1,0 +1,95 @@
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="${pageContext.request.contextPath}/" class="nav-link px-2 link-secondary">
+                <fmt:message key="header.home"/>
+            </a></li>
+            <li><a href="${pageContext.request.contextPath}/faculties" class="nav-link px-2 link-dark">
+                <fmt:message key="header.faculties"/>
+            </a></li>
+            <li><a href="${pageContext.request.contextPath}/recruitments" class="nav-link px-2 link-dark">
+                <fmt:message key="header.recruitments"/>
+            </a></li>
+            <c:if test="${role == 'ADMIN'}">
+                <li><a href="${pageContext.request.contextPath}/subjects" class="nav-link px-2 link-dark">
+                    <fmt:message key="header.subjects"/>
+                </a></li>
+                <li><a href="${pageContext.request.contextPath}/users" class="nav-link px-2 link-dark">
+                    <fmt:message key="header.users"/>
+                </a></li>
+            </c:if>
+
+
+            <li class="nav-link px-2 link-dark">
+                <div class="sl-nav">
+                    <fmt:message key="language.language"/>
+                    <ul>
+                        <li><b>
+                            <fmt:message key="language.current"/>
+
+                        </b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            <div class="triangle"></div>
+                            <ul id="dropdown">
+                                <li id="btn-en"><i class="sl-flag flag-usa">
+                                    <div id="english"></div>
+                                </i> <span>
+                        <fmt:message key="language.english"/>
+                    </span></li>
+                                <li id="btn-ru"><i class="sl-flag flag-ru">
+                                    <div id="russian"></div>
+                                </i> <span>
+                        <fmt:message key="language.russian"/>
+                    </span></li>
+                                <li id="btn-uk"><i class="sl-flag flag-uk">
+                                    <div id="ukrainian"></div>
+                                </i> <span>
+                        <fmt:message key="language.ukrainian"/>
+                    </span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </li>
+        </ul>
+
+
+        <div class="col-md-3 text-end">
+
+            <c:if test="${user==null}">
+
+                <form style="padding: 0; margin: 0" method="get" action="${pageContext.request.contextPath}/login">
+                    <button type="submit" class="btn btn-outline-primary me-2">
+                        <fmt:message key="header.login"/>
+                    </button>
+                </form>
+
+
+            </c:if>
+
+            <c:if test="${user!=null}">
+
+
+                <form style="padding: 0; margin: 0" method="get" action="${pageContext.request.contextPath}/logout">
+
+
+                    <a href="${pageContext.request.contextPath}/profile?userId=${user.id}"
+                       class="nav-text px-2 link-dark">${user.login}</a>
+
+                    <button type="submit" class="btn btn-outline-primary me-2">
+                        <fmt:message key="header.signOut"/>
+                    </button>
+                </form>
+
+            </c:if>
+
+
+        </div>
+    </header>
+</div>
